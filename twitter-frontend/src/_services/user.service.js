@@ -3,7 +3,9 @@ import { authHeader } from '../_helpers';
 export const userService = {
     add_tweet,
     logout,
-    get_all_tweet
+    get_all_tweet,
+    upvote,
+    downvote
 };
 
 function add_tweet(username, tweet) {
@@ -43,6 +45,45 @@ function get_all_tweet(username) {
         })
         .then(res => {
             return res;
+        });
+}
+
+
+function upvote(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    var url = 'http://localhost:4000/users/upvote/' + id;
+    return fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(res => {
+            console.log(res);
+        });
+}
+
+function downvote(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    var url = 'http://localhost:4000/users/downvote/' + id;
+    return fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(res => {
+            console.log(res);
         });
 }
 

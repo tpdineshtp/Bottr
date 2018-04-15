@@ -23,21 +23,25 @@ class HomePage extends React.Component {
     const { dispatch } = this.props;
     if (this.state.input_tweet) {
         dispatch(userActions.add_tweet(this.props.user.email, this.state.input_tweet));
+        this.setState({input_tweet :''})
+
     }
   }
 
     render() {
         return (
             <div align="center">
-                <p>Hi {this.props.user.email}!</p>
+              <div class="page-header">
+                <h3>  Hi <span className="label label-primary"> {this.props.user.email}!</span></h3>
+              </div>
             <div className="parent-div">
             <div className="input-tweet left-div">
               Enter your tweet here
               <br/>
               <form id="tweet-form" onSubmit={this.handleSubmit} method="POST">
-                <input className="enter-tweet" value={this.state.input_tweet} onChange={this.handleInputTweet} type="text" name="notes" />
+                <input className="enter-tweet form-control" value={this.state.input_tweet} onChange={this.handleInputTweet} type="text" name="notes" placeholder="enter here"/>
                 <br/>
-                <button type="submit" className="tweet-submit-button">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
               </form>
             </div>
             <div className="tweet-dashboard right-div">All of your tweets

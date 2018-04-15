@@ -29,6 +29,8 @@ module.exports = {
         inject: 'body'
     })],
     devServer: {
-        historyApiFallback: true
+      historyApiFallback: true,
+      contentBase: './',
+      hot: true
     }
 }

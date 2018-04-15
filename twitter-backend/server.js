@@ -5,6 +5,7 @@ var express = require('express'),
   morgan = require('morgan'),
   User = require('./api/models/userModel'),
   Tweet = require('./api/models/tweetsModel'),
+  TweetDetails = require('./api/models/tweetDetails'),
   bodyParser = require('body-parser');
 
 var cors = require('cors');

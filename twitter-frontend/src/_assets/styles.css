@@ -25,3 +25,14 @@
   user-select: none;
   cursor: pointer;
 }
+
+#upvote-button{
+  margin-right: 10%;
+}
+.enter-tweet{
+  width: 45%;
+}
+.page-header {
+  margin-top: 0;
+margin-bottom: 44px;
+}

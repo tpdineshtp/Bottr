@@ -23,7 +23,8 @@ function add_tweet(username, tweet) {
     return dispatch => {
         userService.add_tweet(username, tweet)
             .then(
-                success => {
+                result => {
+                  dispatch(success(tweet));
                   alert("tweet added");
                 },
                 error => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { userActions } from '../../../../_actions';
 
@@ -10,7 +11,7 @@ class ListTweets extends React.Component {
     this.state = {
       todos: this.props.tweets,
       currentPage: 1,
-      todosPerPage: 3
+      todosPerPage: 5
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -21,6 +22,7 @@ class ListTweets extends React.Component {
   }
 
   render() {
+    console.log(this.props.page_refresh);
     const { todos, currentPage, todosPerPage } = this.state;
 
     // Logic for displaying todos
@@ -29,7 +31,8 @@ class ListTweets extends React.Component {
     const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
 
     const renderTodos = currentTodos.map((todo, index) => {
-      return <li key={todo._id} id={todo._id}><a href="#">{todo.tweet}</a></li>;
+      var link='/tweet/' + todo._id;
+      return <li key={todo._id} id={todo._id}> <Link to={link} className="btn btn-link">{todo.tweet}</Link></li>;
     });
 
 
@@ -53,6 +56,8 @@ class ListTweets extends React.Component {
 
     return (
       <div>
+      {
+        this.props.page_refresh ? <p> updated </p>: null}
         <ul>
           {renderTodos}
         </ul>
@@ -67,9 +72,9 @@ class ListTweets extends React.Component {
 
 function mapStateToProps(state) {
   const { loggedIn, user } = state.authentication;
-  const {tweets} = state.users;
+  const {tweets, page_refresh} = state.users;
   return {
-      loggedIn, user, tweets
+      loggedIn, user, tweets, page_refresh
   };
 }
 

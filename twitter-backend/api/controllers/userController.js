@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    Tweet = mongoose.model('Tweet');
+    Tweet = mongoose.model('Tweet'),
+    TweetDetails = mongoose.model('TweetDetails');
 
 /*
 Registers a new user
@@ -25,23 +26,37 @@ exports.get_all_tweet = function(req, res) {
       });
 };
 
-/*
-Authenticates a user given username and password as Strings
-*/
-exports.authenticate_user = function(req, res) {
-  User.findOne({ username : req.body.username, password: req.body.password }, function(err, user) {
-    if (err)
-      res.send(err);
-    // Username not exists in DB
-    if(user === null) {
-      res.status(404).send({});
-    }
-    else{
-      res.json(user);
-    }
-  });
-};
+exports.get_tweet = function (req,res){
+  var result = [];
 
-exports.test_url = function(req, res) {
-  res.status(200).send({});
-};
+  TweetDetails.findOneAndUpdate({tweet_id: req.params.id}, {$inc: {views:1}}, {new: true, upsert: true}, function(err, doc){
+      if(err){
+          console.log("Something wrong when updating data!");
+      }
+      result.push(doc);
+      Tweet.findById(req.params.id, function(err, tweet) {
+      if (err)
+        res.send(err);
+      result.push(tweet);
+      res.json(result);
+    });
+  });
+}
+
+exports.upvote_tweet = function (req, res) {
+  TweetDetails.findOneAndUpdate({tweet_id: req.params.id}, {$inc: {upvote:1}}, {new: true, upsert: true}, function(err, doc){
+      if(err){
+          res.send(err);
+      }
+      res.status(200).send(doc);
+  });
+}
+
+exports.downvote_tweet = function (req, res) {
+  TweetDetails.findOneAndUpdate({tweet_id: req.params.id}, {$inc: {downvote:1}}, {new: true, upsert: true}, function(err, doc){
+      if(err){
+          res.send(err);
+      }
+      res.status(200).send(doc);
+  });
+}

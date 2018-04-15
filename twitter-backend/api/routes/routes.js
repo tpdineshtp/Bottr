@@ -9,26 +9,19 @@ passportConfig();
 
 module.exports = function(app) {
 	var user = require('../controllers/userController');
-	var fileHandler = require('../controllers/fileHandler');
-	var mailer = require('../controllers/mailer');
 
 
   app.route('/users/add_tweet')
 		.post(user.add_tweet);
   app.route('/users/get_all_tweet')
 	  .post(user.get_all_tweet);
+  app.route('/users/get_tweet/:id')
+	  .get(user.get_tweet);
+  app.route('/users/upvote/:id')
+    .get(user.upvote_tweet);
+  app.route('/users/downvote/:id')
+    .get(user.downvote_tweet);
 
-	app.route('/users/auth')
-	.post(user.authenticate_user);
-
-	app.route('/download/resume')
-	.get(fileHandler.download_resume);
-
-	app.route('/contact_me')
-	.post(mailer.send_mail);
-
-	app.route('/')
-	.get(user.test_url)
 
 	app.route('/health-check').get(function(req, res) {
   res.status(200);

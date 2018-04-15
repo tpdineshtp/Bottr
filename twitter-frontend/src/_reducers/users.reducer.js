@@ -6,6 +6,11 @@ export function users(state = {}, action) {
       return {
         tweets: action.tweets
       };
+      case userConstants.ADD_TWEET_SUCCESS:
+        return {
+          tweet_added: action.tweet,
+          page_refresh: Math.random()
+        };
     default:
       return state
   }
