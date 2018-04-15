@@ -15,29 +15,20 @@ class App extends React.Component {
     }
 
     render() {
-        const { alert } = this.props;
         return (
             <div className="jumbotron">
-                <div className="container">
-                        <Router history={history}>
-                            <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                                <Route path="/tweet/:tweetId" component={DetailedView} />
-                            </div>
-                        </Router>
-                </div>
-            </div>
+              <div className="container">
+                <Router history={history}>
+                  <div>
+                    <PrivateRoute exact path="/" component={HomePage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/tweet/:tweetId" component={DetailedView} />
+                  </div>
+                </Router>
+              </div>
+          </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    const { alert } = state;
-    return {
-        alert
-    };
-}
-
-const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App };
+export { App };

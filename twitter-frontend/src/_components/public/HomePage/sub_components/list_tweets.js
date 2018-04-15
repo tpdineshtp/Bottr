@@ -10,7 +10,7 @@ class ListTweets extends React.Component {
     this.state = {
       tweets: this.props.tweets,
       currentPage: 1,
-      todosPerPage: 5
+      tweetsPerPage: 5
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -21,23 +21,22 @@ class ListTweets extends React.Component {
   }
 
   render() {
-    console.log(this.props.page_refresh);
-    const { tweets, currentPage, todosPerPage } = this.state;
+    const { tweets, currentPage, tweetsPerPage } = this.state;
 
     // Logic for displaying tweets
-    const indexOfLastTodo = currentPage * todosPerPage;
-    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const indexOfLastTodo = currentPage * tweetsPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - tweetsPerPage;
     const currentTodos = tweets.slice(indexOfFirstTodo, indexOfLastTodo);
 
-    const renderTodos = currentTodos.map((todo, index) => {
-      var link='/tweet/' + todo._id;
-      return <li key={todo._id} id={todo._id}> <Link to={link} className="btn btn-link">{todo.tweet}</Link></li>;
+    const renderTodos = currentTodos.map((twe, index) => {
+      var link='/tweet/' + twe._id;
+      return <li key={twe._id} id={twe._id}> <Link to={link} className="btn btn-link">{twe.tweet}</Link></li>;
     });
 
 
     // Logic for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(tweets.length / todosPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(tweets.length / tweetsPerPage); i++) {
       pageNumbers.push(i);
     }
 

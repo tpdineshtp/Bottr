@@ -1,5 +1,5 @@
 // array in local storage for registered users
-let users = localStorage.getItem('users') || [];
+let users = localStorage.getItem('cur_users') || [];
 
 export function configureFakeBackend() {
     let realFetch = window.fetch;
