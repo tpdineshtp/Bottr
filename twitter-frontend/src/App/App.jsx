@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import '../_assets/styles.css'
 
 import { history } from '../_helpers';
-import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
 import { HomePage } from '../_components/public/HomePage';
 import { LoginPage } from '../_components/public/LoginPage';
@@ -13,12 +12,6 @@ import { DetailedView } from '../_components/public/DetailedView';
 class App extends React.Component {
     constructor(props) {
         super(props);
-
-        const { dispatch } = this.props;
-        history.listen((location, action) => {
-            // clear alert on location change
-            dispatch(alertActions.clear());
-        });
     }
 
     render() {

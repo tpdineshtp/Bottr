@@ -22,4 +22,4 @@ routes(app);
 
 app.listen(port);
 
-console.log('apollo API server started on: ' + port);
+console.log('Twitter API server started on: ' + port);

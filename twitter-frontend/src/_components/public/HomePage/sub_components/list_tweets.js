@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { userActions } from '../../../../_actions';
 
 
@@ -9,7 +8,7 @@ class ListTweets extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: this.props.tweets,
+      tweets: this.props.tweets,
       currentPage: 1,
       todosPerPage: 5
     };
@@ -23,12 +22,12 @@ class ListTweets extends React.Component {
 
   render() {
     console.log(this.props.page_refresh);
-    const { todos, currentPage, todosPerPage } = this.state;
+    const { tweets, currentPage, todosPerPage } = this.state;
 
-    // Logic for displaying todos
+    // Logic for displaying tweets
     const indexOfLastTodo = currentPage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-    const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
+    const currentTodos = tweets.slice(indexOfFirstTodo, indexOfLastTodo);
 
     const renderTodos = currentTodos.map((todo, index) => {
       var link='/tweet/' + todo._id;
@@ -38,7 +37,7 @@ class ListTweets extends React.Component {
 
     // Logic for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(todos.length / todosPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(tweets.length / todosPerPage); i++) {
       pageNumbers.push(i);
     }
 
