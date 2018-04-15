@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../_assets/styles.css'
+import '../_assets/styles.scss'
 
 import { history } from '../_helpers';
 import { PrivateRoute } from '../_components';
