@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --hot --inline"
   },
   "dependencies": {
     "history": "^4.6.3",
@@ -30,6 +30,8 @@
     "html-webpack-plugin": "^2.26.0",
     "path": "^0.12.7",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2"
+    "webpack-dev-server": "^2.8.2",
+    "file-loader": "^1.1.11",
+    "url-loader": "^1.0.1"
   }
 }
